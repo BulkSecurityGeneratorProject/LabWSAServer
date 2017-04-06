@@ -1,0 +1,40 @@
+{
+    "relationships": [
+        {
+            "relationshipId": 1,
+            "relationshipName": "assessment_object",
+            "otherEntityName": "registeredobject",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "objectName"
+        },
+        {
+            "relationshipId": 2,
+            "relationshipName": "assessment_feature",
+            "otherEntityName": "feature",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "featureName"
+        },
+        {
+            "relationshipId": 3,
+            "relationshipName": "assessment_agent",
+            "otherEntityName": "agent",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "agentName"
+        }
+    ],
+    "fields": [
+        {
+            "fieldId": 1,
+            "fieldName": "assessmentValue",
+            "fieldType": "Double"
+        },
+        {
+            "fieldId": 2,
+            "fieldName": "estimationTime",
+            "fieldType": "DateTime"
+        }
+    ],
+    "changelogDate": "20151023185809",
+    "dto": "no",
+    "pagination": "pager"
+}

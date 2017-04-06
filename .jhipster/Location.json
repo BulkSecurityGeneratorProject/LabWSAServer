@@ -1,0 +1,31 @@
+{
+    "relationships": [
+        {
+            "relationshipId": 1,
+            "relationshipName": "location_agent",
+            "otherEntityName": "agent",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "agentName"
+        }
+    ],
+    "fields": [
+        {
+            "fieldId": 1,
+            "fieldName": "xPosition",
+            "fieldType": "Double"
+        },
+        {
+            "fieldId": 2,
+            "fieldName": "yPosition",
+            "fieldType": "Double"
+        },
+        {
+            "fieldId": 3,
+            "fieldName": "time",
+            "fieldType": "DateTime"
+        }
+    ],
+    "changelogDate": "20151011161959",
+    "dto": "no",
+    "pagination": "pager"
+}

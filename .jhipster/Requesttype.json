@@ -1,0 +1,21 @@
+{
+    "relationships": [
+        {
+            "relationshipId": 1,
+            "relationshipName": "requesttype_action",
+            "otherEntityName": "communicativeaction",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "action_requesttype"
+        }
+    ],
+    "fields": [
+        {
+            "fieldId": 1,
+            "fieldName": "requestTypeName",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20151022215156",
+    "dto": "no",
+    "pagination": "pager"
+}

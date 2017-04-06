@@ -1,0 +1,38 @@
+{
+    "relationships": [
+        {
+            "relationshipId": 1,
+            "relationshipName": "object_agent",
+            "otherEntityName": "agent",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "agentName"
+        },
+        {
+            "relationshipId": 2,
+            "relationshipName": "object_assessment",
+            "otherEntityName": "assessment",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "assessment_object"
+        }
+    ],
+    "fields": [
+        {
+            "fieldId": 1,
+            "fieldName": "objectName",
+            "fieldType": "String"
+        },
+        {
+            "fieldId": 2,
+            "fieldName": "objectDescription",
+            "fieldType": "String"
+        },
+        {
+            "fieldId": 3,
+            "fieldName": "registrationTime",
+            "fieldType": "DateTime"
+        }
+    ],
+    "changelogDate": "20151023185359",
+    "dto": "no",
+    "pagination": "pager"
+}

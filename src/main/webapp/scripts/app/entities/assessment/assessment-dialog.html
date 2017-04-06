@@ -1,0 +1,56 @@
+
+<form name="editForm" role="form" novalidate ng-submit="save()">
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="clear()">&times;</button>
+        <h4 class="modal-title" id="myAssessmentLabel">Create or edit a Assessment</h4>
+    </div>
+    <div class="modal-body">
+        <jh-alert-error></jh-alert-error>
+        <div class="form-group">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="assessment.id" readonly>
+        </div>
+        <div class="form-group">
+            <label for="field_assessmentValue">AssessmentValue</label>
+            <input type="number" class="form-control" name="assessmentValue" id="field_assessmentValue"
+                    ng-model="assessment.assessmentValue"
+                    >
+        </div>
+        <div class="form-group">
+            <label for="field_estimationTime">EstimationTime</label>
+            <input type="datetime-local" class="form-control" name="estimationTime" id="field_estimationTime"
+                    ng-model="assessment.estimationTime" ng-model-options="{timezone: 'UTC'}"
+                    >
+        </div>
+
+        <div class="form-group">
+            <label for="field_assessment_object">assessment_object</label>
+            <select class="form-control" id="field_assessment_object" name="assessment_object" ng-model="assessment.assessment_object" ng-options="registeredobject as registeredobject.objectName for registeredobject in registeredobjects track by registeredobject.id">
+                <option value=""></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="field_assessment_feature">assessment_feature</label>
+            <select class="form-control" id="field_assessment_feature" name="assessment_feature" ng-model="assessment.assessment_feature" ng-options="feature as feature.featureName for feature in features track by feature.id">
+                <option value=""></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="field_assessment_agent">assessment_agent</label>
+            <select class="form-control" id="field_assessment_agent" name="assessment_agent" ng-model="assessment.assessment_agent" ng-options="agent as agent.agentName for agent in agents track by agent.id">
+                <option value=""></option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || editForm.$submitted" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>

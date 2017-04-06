@@ -1,0 +1,21 @@
+{
+    "relationships": [
+        {
+            "relationshipId": 1,
+            "relationshipName": "presencestatus_presencerequest",
+            "otherEntityName": "presencerequest",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "presencerequest_presencestatus"
+        }
+    ],
+    "fields": [
+        {
+            "fieldId": 1,
+            "fieldName": "presenceStatusName",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20151023175627",
+    "dto": "no",
+    "pagination": "pager"
+}

@@ -1,0 +1,82 @@
+{
+    "relationships": [
+        {
+            "relationshipId": 1,
+            "relationshipName": "agent_sensor",
+            "otherEntityName": "sensor",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "sensor_agent"
+        },
+        {
+            "relationshipId": 2,
+            "relationshipName": "agent_location",
+            "otherEntityName": "location",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "location_agent"
+        },
+        {
+            "relationshipId": 3,
+            "relationshipName": "receiver_action",
+            "otherEntityName": "communicativeaction",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "action_receiver"
+        },
+        {
+            "relationshipId": 4,
+            "relationshipName": "sender_action",
+            "otherEntityName": "communicativeaction",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "action_sender"
+        },
+        {
+            "relationshipId": 5,
+            "relationshipName": "agent_agenttype",
+            "otherEntityName": "agenttype",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "agentTypeName"
+        },
+        {
+            "relationshipId": 6,
+            "relationshipName": "agent_presencerequest",
+            "otherEntityName": "presencerequest",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "presencerequest_agent"
+        },
+        {
+            "relationshipId": 7,
+            "relationshipName": "agent_feature",
+            "otherEntityName": "feature",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "feature_agent"
+        },
+        {
+            "relationshipId": 8,
+            "relationshipName": "agent_object",
+            "otherEntityName": "registeredobject",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "object_agent"
+        },
+        {
+            "relationshipId": 9,
+            "relationshipName": "agent_assessment",
+            "otherEntityName": "assessment",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "assessment_agent"
+        }
+    ],
+    "fields": [
+        {
+            "fieldId": 1,
+            "fieldName": "agentName",
+            "fieldType": "String"
+        },
+        {
+            "fieldId": 2,
+            "fieldName": "agentDescription",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20151011161531",
+    "dto": "no",
+    "pagination": "pager"
+}

@@ -1,0 +1,43 @@
+<div>
+    <h2>Currently online agents</h2>
+    <jh-alert></jh-alert>
+
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th ng-click="predicate = 'id'; reverse=!reverse">ID</th>
+                    <th ng-click="predicate = 'agentName'; reverse=!reverse">AgentName</th>
+                    <th ng-click="predicate = 'agentDescription'; reverse=!reverse">AgentDescription</th>
+                    <th ng-click="predicate = 'agent_agenttype.agentTypeName'; reverse=!reverse">Agent's type</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="agent in currently_present_agents | orderBy:predicate:reverse">
+                    <td><a ui-sref="agent.detail({id:agent.id})">{{agent.id}}</a></td>
+                    <td>{{agent.agentName}}</td>
+                    <td>{{agent.agentDescription}}</td>
+                    <td>
+                        <a ui-sref="agenttype.detail({id:agent.agent_agenttype.id})">{{agent.agent_agenttype.agentTypeName}}</a>
+                    </td>
+                    <td>
+                        <button type="submit"
+                                ui-sref="agent.detail({id:agent.id})"
+                                class="btn btn-info btn-sm">
+                            <span class="glyphicon glyphicon-eye-open"></span>&nbsp;<span> Show details</span>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <nav>
+            <ul class="pager">
+                <li ng-show="links['first'] >= 0" ng-click="loadPage(links['first'])"><a href="#">&lt;&lt;</a></li>
+                <li ng-show="page > 0" ng-click="loadPage(links['prev'] || 0)"><a href="#">&lt;</a></li>
+                <li ng-show="links['next']" ng-click="loadPage(links['next'])"><a href="#">&gt;</a></li>
+                <li ng-show="links['last'] > 0" ng-click="loadPage(links['last'])"><a href="#">&gt;&gt;</a></li>
+            </ul>
+        </nav>
+    </div>
+</div>

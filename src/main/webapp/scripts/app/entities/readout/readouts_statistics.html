@@ -1,0 +1,74 @@
+<div>
+    <h2>Readouts</h2>
+    <jh-alert></jh-alert>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2">
+                <div class="btn-group" >
+                    <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" type="button"
+                            class="btn btn-primary" >
+                        Choose agent <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" >
+                        <li><a href="#" ng-repeat="agent in agents" ng-click="setCurrentAgent(agent.id,agent.agentName);loadSensors();loadReadoutsForAgent()">{{ agent.agentName }}</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="btn-group" >
+                    <button class="btn btn-primary"  aria-haspopup="true" aria-expanded="false" type="button"
+                            class="btn btn-primary" ng-click="loadReadoutsForAgent()">
+                        Refresh
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <p class="input-group">
+                    <span class="input-group-addon">From</span>
+                    <input type="datetime-local" class="input-sm form-control" name="start" ng-model="fromDate" required/>
+                </p>
+            </div>
+            <div class="col-md-3">
+                <p class="input-group">
+                    <span class="input-group-addon">To</span>
+                    <input type="datetime-local" class="input-sm form-control" name="start" ng-model="toDate" required/>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead >
+                <tr  >
+                    <th ng-repeat="sensor in sensors" class="col-md-1">{{ sensor.sensorName }} [ {{ sensor.sensor_unittype.unitTypeName }} ] </th>
+                </tr>
+                <th></th>
+            </thead>
+            <tbody>
+                <tr ng-repeat="readout in readoutsForAgent | orderBy:predicate:reverse">
+                    <td ng-repeat="sensor in sensors">
+                        <p  ng-if="readout.readout_sensor.id === sensor.id">{{ readout.readoutValue}} ->  {{readout.readoutTime}}</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <nav>
+            <ul class="pager">
+                <li ng-show="links['first'] >= 0" ng-click="loadPage(links['first'])"><a href="#">&lt;&lt;</a></li>
+                <li ng-show="page > 0" ng-click="loadPage(links['prev'] || 0)"><a href="#">&lt;</a></li>
+                <li ng-show="links['next']" ng-click="loadPage(links['next'])"><a href="#">&gt;</a></li>
+                <li ng-show="links['last'] > 0" ng-click="loadPage(links['last'])"><a href="#">&gt;&gt;</a></li>
+            </ul>
+        </nav>
+    </div>
+</div>

@@ -1,0 +1,359 @@
+<div>
+    <h2>Create your own chart!</h2>
+    <jh-alert></jh-alert>
+
+    <br><br>
+
+    <div class="modal fade" id="NoReadoutsAlert">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form name="deleteForm" ng-submit="confirmDelete(readout.id)">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                                ng-click="clear()">&times;</button>
+                        <h4 class="modal-title">Unfortunately there are no readouts available in the time range choosen
+                            by you</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Please select another period of time</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
+                            <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;<span>OK</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="NoAgentOrSensorChoosenAlert">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form name="deleteForm" ng-submit="confirmDelete(readout.id)">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                                ng-click="clear()">&times;</button>
+                        <h4 class="modal-title">In order to generate a chart you have to choose agent and sensor!!</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Please choose some agent and sensor from dropdown lists</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
+                            <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;<span>OK</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="container ">
+        <div class="row charts">
+
+            <div class="table-condensed col-md-6">
+                <div class="container">
+                    <div class="col-md-3">
+                        <p class="input-group input-group-sm">
+                            <span class="input-group-addon">From</span>
+                            <input type="datetime-local" class="input-sm form-control" name="start" ng-model="fromDate"
+                                   required/>
+                        </p>
+                    </div>
+                    <div class="col-md-3">
+                        <p class="input-group input-group-sm">
+                            <span class="input-group-addon">To</span>
+                            <input type="datetime-local" class="input-sm form-control" name="start" ng-model="toDate"
+                                   required/>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="container">
+                    <div class="col-md-3">
+                        <div class="input-group input-group-sm">
+                            <div class="input-group-btn">
+                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false">Choose agent <span
+                                    class="caret"></span></button>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#" ng-repeat="agent in agents"
+                                           ng-click="setCurrentAgent(chart1Id,agent.id,agent.agentName);loadSensors(chart1Id)">{{
+                                        agent.agentName }}</a></li>
+                                </ul>
+                            </div>
+                            <input type="text" class="form-control" aria-label="..." placeholder="Choose agent..."
+                                   ng-model="selectedAgentName">
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="input-group input-group-sm">
+                            <div class="input-group-btn">
+                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false">Choose sensor <span
+                                    class="caret"></span></button>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#" ng-repeat="sensor in sensors"
+                                           ng-click="setCurrentSensor(chart1Id, sensor.id,sensor.sensorName); refresh(chart1Id)">{{
+                                        sensor.sensorName }}</a></li>
+                                </ul>
+                            </div>
+                            <input type="text" class="form-control" aria-label="..." placeholder="Choose sensor..."
+                                   ng-model="selectedSensorName">
+                        </div>
+                    </div>
+                </div>
+
+                <br>
+
+                <div class="container">
+                    <div class="col-md-6">
+                        <button class="btn btn-primary btn-sm" aria-haspopup="true" aria-expanded="false" type="button"
+                                ng-click="drawChart(chart1Id)">
+                            Draw chart
+                        </button>
+                    </div>
+                </div>
+
+                <canvas id="line1" class="chart chart-line" chart-data="data"
+                        chart-labels="labels" chart-legend="true" chart-series="series" chart-colours="colours"
+                        chart-click="onClick">
+                </canvas>
+            </div>
+
+
+            <!--second column first row-->
+            <div class="table-condensed col-md-6">
+                <div class="container">
+                    <div class="col-md-3">
+                        <p class="input-group input-group-sm">
+                            <span class="input-group-addon">From</span>
+                            <input type="datetime-local" class="input-sm form-control" name="start" ng-model="fromDate2"
+                                   ng-change="refresh()" required/>
+                        </p>
+                    </div>
+                    <div class="col-md-3">
+                        <p class="input-group input-group-sm">
+                            <span class="input-group-addon">To</span>
+                            <input type="datetime-local" class="input-sm form-control" name="start" ng-model="toDate2"
+                                   ng-change="refresh()" required/>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="container">
+
+                    <div class="col-md-3">
+                        <div class="input-group input-group-sm">
+                            <div class="input-group-btn">
+                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false">Choose agent <span
+                                    class="caret"></span></button>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#" ng-repeat="agent in agents"
+                                           ng-click="setCurrentAgent(chart2Id, agent.id,agent.agentName);loadSensors(chart2Id)">{{
+                                        agent.agentName }}</a></li>
+                                </ul>
+                            </div>
+                            <input type="text" class="form-control" aria-label="..." placeholder="Choose agent..."
+                                   ng-model="selectedAgentName2">
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="input-group input-group-sm">
+                            <div class="input-group-btn">
+                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false">Choose sensor <span
+                                    class="caret"></span></button>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#" ng-repeat="sensor in sensors2"
+                                           ng-click="setCurrentSensor(chart2Id,sensor.id,sensor.sensorName); refresh()">{{
+                                        sensor.sensorName }}</a></li>
+                                </ul>
+                            </div>
+                            <input type="text" class="form-control" aria-label="..." placeholder="Choose sensor..."
+                                   ng-model="selectedSensorName2">
+                        </div>
+                    </div>
+                </div>
+
+                <br>
+
+                <div class="container">
+                    <div class="col-md-6">
+                        <button class="btn btn-primary btn-sm" aria-haspopup="true" aria-expanded="false" type="button"
+                                ng-click="drawChart(chart2Id)">
+                            Draw chart
+                        </button>
+                    </div>
+                </div>
+
+                <canvas id="line2" class="chart chart-line" chart-data="data2"
+                        chart-labels="labels2" chart-legend="true" chart-series="series" chart-colours="colours"
+                        chart-click="onClick">
+                </canvas>
+            </div>
+
+        </div>
+    </div>
+
+    <!----------------------------------------------------------------------------------->
+
+    <br><br>
+
+    <div class="container">
+        <div class="row charts">
+            <div class="table-condensed col-md-6">
+                <div class="container">
+                    <div class="col-md-3">
+                        <p class="input-group input-group-sm">
+                            <span class="input-group-addon">From</span>
+                            <input type="datetime-local" class="input-sm form-control" name="start" ng-model="fromDate3"
+                                   ng-change="refresh()" required/>
+                        </p>
+                    </div>
+                    <div class="col-md-3">
+                        <p class="input-group input-group-sm">
+                            <span class="input-group-addon">To</span>
+                            <input type="datetime-local" class="input-sm form-control" name="start" ng-model="toDate3"
+                                   ng-change="refresh()" required/>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="container">
+
+                    <div class="col-md-3">
+                        <div class="input-group input-group-sm">
+                            <div class="input-group-btn">
+                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false">Choose agent <span
+                                    class="caret"></span></button>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#" ng-repeat="agent in agents"
+                                           ng-click="setCurrentAgent(chart3Id, agent.id,agent.agentName);loadSensors(chart3Id)">{{
+                                        agent.agentName }}</a></li>
+                                </ul>
+                            </div>
+                            <input type="text" class="form-control" aria-label="..." placeholder="Choose agent..."
+                                   ng-model="selectedAgentName3">
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="input-group input-group-sm">
+                            <div class="input-group-btn">
+                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false">Choose sensor <span
+                                    class="caret"></span></button>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#" ng-repeat="sensor in sensors3"
+                                           ng-click="setCurrentSensor(chart3Id,sensor.id,sensor.sensorName); refresh()">{{
+                                        sensor.sensorName }}</a></li>
+                                </ul>
+                            </div>
+                            <input type="text" class="form-control" aria-label="..." placeholder="Choose sensor..."
+                                   ng-model="selectedSensorName3">
+                        </div>
+                    </div>
+                </div>
+
+                <br>
+
+                <div class="container">
+                    <div class="col-md-6">
+                        <button class="btn btn-primary btn-sm" aria-haspopup="true" aria-expanded="false" type="button"
+                                ng-click="drawChart(chart3Id)">
+                            Draw chart
+                        </button>
+                    </div>
+                </div>
+
+                <canvas id="line3" class="chart chart-line" chart-data="data3"
+                        chart-labels="labels3" chart-legend="true" chart-series="series" chart-colours="colours"
+                        chart-click="onClick">
+                </canvas>
+            </div>
+
+
+            <!--second column ----------------------------------------------------------------->
+            <div class="table-condensed col-md-6">
+                <div class="container">
+                    <div class="col-md-3">
+                        <p class="input-group input-group-sm">
+                            <span class="input-group-addon">From</span>
+                            <input type="datetime-local" class="input-sm form-control" name="start" ng-model="fromDate4"
+                                   ng-change="refresh()" required/>
+                        </p>
+                    </div>
+                    <div class="col-md-3">
+                        <p class="input-group input-group-sm">
+                            <span class="input-group-addon">To</span>
+                            <input type="datetime-local" class="input-sm form-control" name="start" ng-model="toDate4"
+                                   ng-change="refresh()" required/>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="container">
+
+                    <div class="col-md-3">
+                        <div class="input-group input-group-sm">
+                            <div class="input-group-btn">
+                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false">Choose agent <span
+                                    class="caret"></span></button>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#" ng-repeat="agent in agents"
+                                           ng-click="setCurrentAgent(chart4Id, agent.id,agent.agentName);loadSensors(chart4Id)">{{
+                                        agent.agentName }}</a></li>
+                                </ul>
+                            </div>
+                            <input type="text" class="form-control" aria-label="..." placeholder="Choose agent..."
+                                   ng-model="selectedAgentName4">
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="input-group input-group-sm">
+                            <div class="input-group-btn">
+                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false">Choose sensor <span
+                                    class="caret"></span></button>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#" ng-repeat="sensor in sensors4"
+                                           ng-click="setCurrentSensor(chart4Id,sensor.id,sensor.sensorName); refresh()">{{
+                                        sensor.sensorName }}</a></li>
+                                </ul>
+                            </div>
+                            <input type="text" class="form-control" aria-label="..." placeholder="Choose sensor..."
+                                   ng-model="selectedSensorName4">
+                        </div>
+                    </div>
+                </div>
+
+                <br>
+
+                <div class="container">
+                    <div class="col-md-6">
+                        <button class="btn btn-primary btn-sm" aria-haspopup="true" aria-expanded="false" type="button"
+                                ng-click="drawChart(chart4Id)">
+                            Draw chart
+                        </button>
+                    </div>
+                </div>
+
+                <canvas id="line4" class="chart chart-line" chart-data="data4"
+                        chart-labels="labels4" chart-legend="true" chart-series="series" chart-colours="colours"
+                        chart-click="onClick">
+                </canvas>
+            </div>
+
+        </div>
+    </div>
+
+</div>

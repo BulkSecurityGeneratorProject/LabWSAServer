@@ -1,0 +1,27 @@
+{
+    "relationships": [
+        {
+            "relationshipId": 1,
+            "relationshipName": "graphicalreadout_sensor",
+            "otherEntityName": "sensor",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "sensorName"
+        }
+    ],
+    "fields": [
+        {
+            "fieldId": 1,
+            "fieldName": "image",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image"
+        },
+        {
+            "fieldId": 2,
+            "fieldName": "readoutTime",
+            "fieldType": "DateTime"
+        }
+    ],
+    "changelogDate": "20151112072447",
+    "dto": "no",
+    "pagination": "pager"
+}

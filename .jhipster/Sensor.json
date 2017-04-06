@@ -1,0 +1,54 @@
+{
+    "relationships": [
+        {
+            "relationshipId": 1,
+            "relationshipName": "sensor_agent",
+            "otherEntityName": "agent",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "agentName"
+        },
+        {
+            "relationshipId": 2,
+            "relationshipName": "sensor_readout",
+            "otherEntityName": "readout",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "readout_sensor"
+        },
+        {
+            "relationshipId": 3,
+            "relationshipName": "sensor_unittype",
+            "otherEntityName": "unittype",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "unitTypeName"
+        },
+        {
+            "relationshipId": 4,
+            "relationshipName": "sensor_sensortype",
+            "otherEntityName": "sensortype",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "sensorTypeName"
+        },
+        {
+            "relationshipId": 5,
+            "relationshipName": "sensor_graphicalreadout",
+            "otherEntityName": "graphicalreadout",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "graphicalreadout_sensor"
+        }
+    ],
+    "fields": [
+        {
+            "fieldId": 1,
+            "fieldName": "sensorName",
+            "fieldType": "String"
+        },
+        {
+            "fieldId": 2,
+            "fieldName": "sensorAccuracy",
+            "fieldType": "Double"
+        }
+    ],
+    "changelogDate": "20151011162914",
+    "dto": "no",
+    "pagination": "pager"
+}

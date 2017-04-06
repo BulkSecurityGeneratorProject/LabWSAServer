@@ -1,0 +1,52 @@
+{
+    "relationships": [
+        {
+            "relationshipId": 1,
+            "relationshipName": "action_protocol",
+            "otherEntityName": "interactionprotocol",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "protocolName"
+        },
+        {
+            "relationshipId": 2,
+            "relationshipName": "action_requesttype",
+            "otherEntityName": "requesttype",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "requestTypeName"
+        },
+        {
+            "relationshipId": 3,
+            "relationshipName": "action_receiver",
+            "otherEntityName": "agent",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "agentName"
+        },
+        {
+            "relationshipId": 4,
+            "relationshipName": "action_sender",
+            "otherEntityName": "agent",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "agentName"
+        }
+    ],
+    "fields": [
+        {
+            "fieldId": 1,
+            "fieldName": "actionTime",
+            "fieldType": "DateTime"
+        },
+        {
+            "fieldId": 2,
+            "fieldName": "content",
+            "fieldType": "String"
+        },
+        {
+            "fieldId": 3,
+            "fieldName": "language",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20151022215715",
+    "dto": "no",
+    "pagination": "pager"
+}

@@ -1,0 +1,21 @@
+{
+    "relationships": [
+        {
+            "relationshipId": 1,
+            "relationshipName": "sensortype_sensor",
+            "otherEntityName": "sensor",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "sensor_sensortype"
+        }
+    ],
+    "fields": [
+        {
+            "fieldId": 1,
+            "fieldName": "sensorTypeName",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20151011162511",
+    "dto": "no",
+    "pagination": "pager"
+}

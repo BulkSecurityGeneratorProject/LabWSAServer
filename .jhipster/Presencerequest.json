@@ -1,0 +1,28 @@
+{
+    "relationships": [
+        {
+            "relationshipId": 1,
+            "relationshipName": "presencerequest_presencestatus",
+            "otherEntityName": "presencestatus",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "presenceStatusName"
+        },
+        {
+            "relationshipId": 2,
+            "relationshipName": "presencerequest_agent",
+            "otherEntityName": "agent",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "agentName"
+        }
+    ],
+    "fields": [
+        {
+            "fieldId": 1,
+            "fieldName": "presenceRequestTime",
+            "fieldType": "DateTime"
+        }
+    ],
+    "changelogDate": "20151023183435",
+    "dto": "no",
+    "pagination": "pager"
+}

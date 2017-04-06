@@ -1,0 +1,31 @@
+{
+    "relationships": [
+        {
+            "relationshipId": 1,
+            "relationshipName": "protocol_action",
+            "otherEntityName": "communicativeaction",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "action_protocol"
+        }
+    ],
+    "fields": [
+        {
+            "fieldId": 1,
+            "fieldName": "protocolName",
+            "fieldType": "String"
+        },
+        {
+            "fieldId": 2,
+            "fieldName": "protocolDescription",
+            "fieldType": "String"
+        },
+        {
+            "fieldId": 3,
+            "fieldName": "openingTime",
+            "fieldType": "DateTime"
+        }
+    ],
+    "changelogDate": "20151022214909",
+    "dto": "no",
+    "pagination": "pager"
+}

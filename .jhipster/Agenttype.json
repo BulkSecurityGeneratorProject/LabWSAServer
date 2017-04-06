@@ -1,0 +1,21 @@
+{
+    "relationships": [
+        {
+            "relationshipId": 1,
+            "relationshipName": "agenttype_agent",
+            "otherEntityName": "agent",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "agent_agenttype"
+        }
+    ],
+    "fields": [
+        {
+            "fieldId": 1,
+            "fieldName": "agentTypeName",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20151023162500",
+    "dto": "no",
+    "pagination": "pager"
+}

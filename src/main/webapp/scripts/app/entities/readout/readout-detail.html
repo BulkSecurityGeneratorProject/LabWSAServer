@@ -1,0 +1,46 @@
+
+<div>
+    <h2><span>Readout</span> {{readout.id}}</h2>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Field</th>
+                <th>Value</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>
+                    <span>ReadoutValue</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{readout.readoutValue}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>ReadoutTime</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{readout.readoutTime}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>readout_sensor</span>
+                </td>
+                <td>
+                    <a class="form-control-static" ui-sref="sensor.detail({id:readout.readout_sensor.id})">{{readout.readout_sensor.id}}</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <button type="submit"
+            onclick="window.history.back()"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+</div>
